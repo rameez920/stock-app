@@ -14,18 +14,28 @@
 			</div>	
 
 			<div class="row">
-				<div class="col-md-3">
-					<form class="form-group">
-						<label>Stock</label>
-						<input type="text" id="stock-name">
-						<button id="submit-btn">Submit</button>
-					</form>	
+				<div class="col-md-3" id="search">
+					<label>Stock</label>
+					<input type="text" id="stock-name">
+					<button id="submit-btn">Submit</button>
 				</div>
 				
 				<div class="col-md-3" id="stock-info">
-					<h2 id="name"></h2>
-					<h2 id="stock-symbol"></h2>
-					<h1 id="price"></h1>
+					<div class="row">
+						<h1 id="name"></h1>
+					</div>
+					<div class="row">	
+						<div class="col-md-6">
+							<h2 id="current-price"></h2>
+						</div>	
+						<div class="col-md-6">	
+							<h2 id="change"></h2>
+						</div>
+					</div>
+					<div class="row">	
+						<h3 id="high-price"></h3>
+						<h3 id="low-price"></h3>
+					</div>
 				</div>	
 
 				<div class="col-md-6" id="graph">
