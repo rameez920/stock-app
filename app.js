@@ -8,22 +8,28 @@ function Stock(name, currentPrice, high, low, change, percentChange) {
 	this.percentChange = percentChange;
 }
 
-function getStockInfo(stockSymbol) {
+
+function getStockInfo(stockRequest) {
+	var params = {
+		parameters: JSON.stringify(stockRequest)
+	};
 	
 	$.ajax({
-		data: {symbol: stockSymbol},
-		url: "http://dev.markitondemand.com/Api/v2/Quote/jsonp",
+		data: params,
+		url: "http://dev.markitondemand.com/Api/v2/InteractiveChart/jsonp",
 		dataType: "jsonp"
 	
 	}).done(function(data) {
 		if (data.hasOwnProperty('message'))
 			alert("enter a vailid stock name");
 		else {
-			var myStock = new Stock(data.Name, data.LastPrice, data.High, data.Low, data.Change, data.ChangePercent);
-			renderInfo(myStock);
+			//var myStock = new Stock(data.Name, data.LastPrice, data.High, data.Low, data.Change, data.ChangePercent);
+			//renderInfo(myStock);
+			renderGraph();
+			console.log(data);
 		}
 
-	}).fail(function(){
+	}).fail(function() {
 		alert("error");
 	});
 }
@@ -39,17 +45,39 @@ function renderInfo(stock) {
 }
 
 
+function getParams(symbol) {
+	return {  
+        Normalized: false,
+        NumberOfDays: 10,
+        DataPeriod: "Day",
+        Elements: [
+            {
+                Symbol: symbol,
+                Type: "price",
+                Params: ["ohlc"] //ohlc, c = close only
+            },
+            {
+                Symbol: symbol,
+                Type: "volume"
+            }
+        ]
+    }
+}
+
+
 $('#submit-btn').click(function() {
 	var stockSymbol = $('#stock-name').val();
-	getStockInfo(stockSymbol);
+
+	var params = getParams(stockSymbol);
+	getStockInfo(params);
 
 });
 
 //TODO: style html
-//		spacing on stock info
+//		redo layout put graph under info rather than next to
 //		create graph
 // 		error handling
-
+//		spacing on stock info
 
 
 
