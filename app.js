@@ -68,15 +68,15 @@ function getParams(symbol) {
 $('#submit-btn').click(function() {
 	var stockSymbol = $('#stock-name').val();
 
-	var params = getParams(stockSymbol);
-	getStockInfo(params);
+	var request = getParams(stockSymbol);
+	getStockInfo(request);
 
 });
 
 //TODO: style html
-//		redo layout put graph under info rather than next to
-//		create graph
+//		gather and populate graph with data from req
 // 		error handling
+//		display basic data in stock info
 //		spacing on stock info
 
 
