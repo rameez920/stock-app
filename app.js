@@ -25,8 +25,8 @@ function getStockInfo(stockRequest) {
 		else {
 			//var myStock = new Stock(data.Name, data.LastPrice, data.High, data.Low, data.Change, data.ChangePercent);
 			//renderInfo(myStock);
-			renderGraph();
-			console.log(data);
+			renderGraph(data);
+			
 		}
 
 	}).fail(function() {
@@ -48,7 +48,7 @@ function renderInfo(stock) {
 function getParams(symbol) {
 	return {  
         Normalized: false,
-        NumberOfDays: 10,
+        NumberOfDays: 20,
         DataPeriod: "Day",
         Elements: [
             {
