@@ -1,4 +1,4 @@
-//TODO: render data series onto chart
+//TODO: fix date column to not show entire date
 
 function renderGraph(stockData) {
 	
@@ -9,11 +9,12 @@ function renderGraph(stockData) {
 
 		var data = new google.visualization.DataTable();
 		
+		data.addColumn('date', 'date'); 
 		data.addColumn('number', 'close price');
-		data.addColumn('number', 'date'); //update this coloumn to handle dates
 		
-		//TODO: add numbers from ajax request to data
-		formatData(stockData);
+		var dataSeries = formatData(stockData);
+
+		data.addRows(dataSeries);
 
 		var options = {
         	hAxis: {
@@ -38,7 +39,7 @@ function formatData(jsonResponse) {
 	var dates = jsonResponse.Dates;
 
 	var formatedDates = dates.map(function(day) {
-		return Date.parse(day);
+		return new Date(Date.parse(day));
 	});
 	
 	var closingPrices = jsonResponse.Elements[0].DataSeries['close'].values;
@@ -49,7 +50,6 @@ function formatData(jsonResponse) {
 		dataSeries.push([formatedDates[i], closingPrices[i]]);
 	}
 
-	console.log(dataSeries);
 	return dataSeries;
 }
 

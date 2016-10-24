@@ -48,7 +48,7 @@ function renderInfo(stock) {
 function getParams(symbol) {
 	return {  
         Normalized: false,
-        NumberOfDays: 20,
+        NumberOfDays: 100,
         DataPeriod: "Day",
         Elements: [
             {
@@ -65,6 +65,9 @@ function getParams(symbol) {
 }
 
 
+$('input[name="daterange"]').daterangepicker({startDate: moment().subtract(30, 'days'), endDate: moment()});
+
+
 $('#submit-btn').click(function() {
 	var stockSymbol = $('#stock-name').val();
 
@@ -74,8 +77,9 @@ $('#submit-btn').click(function() {
 });
 
 //TODO: style html
-//		gather and populate graph with data from req
-// 		error handling
+//		get number of days after user has selected range
+// 		add range to paramters for ajax request
+//		error handling
 //		display basic data in stock info
 //		spacing on stock info
 
