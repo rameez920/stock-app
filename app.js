@@ -65,7 +65,16 @@ function getParams(symbol) {
 }
 
 
-$('input[name="daterange"]').daterangepicker({startDate: moment().subtract(30, 'days'), endDate: moment()});
+//code for selecting date range first arg sets default values
+//second arg is a callback for when user selects date range
+$('input[name="daterange"]')
+	.daterangepicker({startDate: moment().subtract(30, 'days'), 
+						endDate: moment()}, 
+						
+						function(start, end, label) {
+							console.log(end - start);
+							//TODO: convert milliseconds to days				
+						});
 
 
 $('#submit-btn').click(function() {
