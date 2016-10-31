@@ -1,14 +1,3 @@
-
-function Stock(name, currentPrice, high, low, change, percentChange) {
-	this.name = name;
-	this.currentPrice = currentPrice;
-	this.high = high;
-	this.low = low;
-	this.change = change;
-	this.percentChange = percentChange;
-}
-
-
 function getStockInfo(stockRequest) {
 	var params = {
 		parameters: JSON.stringify(stockRequest)
@@ -23,8 +12,7 @@ function getStockInfo(stockRequest) {
 		if (data.hasOwnProperty('message'))
 			alert("enter a vailid stock name");
 		else {
-			//var myStock = new Stock(data.Name, data.LastPrice, data.High, data.Low, data.Change, data.ChangePercent);
-			//renderInfo(myStock);
+			renderInfo(data);
 			renderGraph(data);
 			
 		}
@@ -35,13 +23,23 @@ function getStockInfo(stockRequest) {
 }
 
 
-function renderInfo(stock) {
-	$('#name').text(stock.name);
-	$('#current-price').text(stock.currentPrice);
-	$('#change').text(stock.change.toPrecision(3));
-	$('#high-price').text(stock.high);
-	$('#low-price').text(stock.low);
-	console.log(stock);
+//TODO: Add dates for max and min prices
+function renderInfo(stockData) {
+	//create object from JSON response
+	var myStock = {
+		name: stockData.Elements[0].Symbol,
+		maxClosePrice: stockData.Elements[0].DataSeries.close.max,
+		minClosePrice: stockData.Elements[0].DataSeries.close.min
+
+	};
+
+	$('#stock-info').append('<h2>Symbol: ' + myStock.name + '</h2>');
+	
+	$('#stock-info').append('<div id=max-price></div>');
+	$('#max-price').append('<h4>Max Close Price : $' + myStock.maxClosePrice + '</h4>');
+
+	$('#stock-info').append('<div id=min-price></div>');
+	$('#max-price').append('<h4>Min Close Price : $' + myStock.minClosePrice + '</h4>');
 }
 
 
@@ -91,10 +89,8 @@ $('#submit-btn').click(function() {
 });
 
 //TODO: style html
-//		get number of days after user has selected range
-// 		add range to paramters for ajax request
-//		error handling
-//		display basic data in stock info
+//		convert date picker to slider
+// 		error handling
 //		spacing on stock info
 
 
