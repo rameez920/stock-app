@@ -48,7 +48,7 @@ function renderInfo(stock) {
 function getParams(symbol) {
 	return {  
         Normalized: false,
-        NumberOfDays: 100,
+        NumberOfDays: days,
         DataPeriod: "Day",
         Elements: [
             {
@@ -65,6 +65,8 @@ function getParams(symbol) {
 }
 
 
+var days = 30; //number of days default set to 30
+
 //code for selecting date range first arg sets default values
 //second arg is a callback for when user selects date range
 $('input[name="daterange"]')
@@ -72,8 +74,11 @@ $('input[name="daterange"]')
 						endDate: moment()}, 
 						
 						function(start, end, label) {
-							console.log(end - start);
-							//TODO: convert milliseconds to days				
+							
+							days = Math.round((end - start) / (1000*60*60*24));
+							console.log(days);
+							
+										
 						});
 
 

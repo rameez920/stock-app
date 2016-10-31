@@ -1,5 +1,6 @@
 #search {
 	margin-top: 75px;
+	position: relative;
 }
 
 #button-row {
@@ -10,4 +11,20 @@
 #graph {
 	width: 1000px;
 	height: 500px;
+}
+
+#symbol-entry {
+	padding: 10px;
+}
+
+#datepicker {
+	padding: 10px;
+}
+
+#stock-name {
+	height: 50px;
+	width: 100px;
+	font-size: 18pt;
+	font-weight: bold;
+	text-transform: uppercase;
 }
