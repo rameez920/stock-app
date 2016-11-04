@@ -25,28 +25,36 @@ function getStockInfo(stockRequest) {
 
 //TODO: Add dates for max and min prices
 function renderInfo(stockData) {
+	
 	//create object from JSON response
 	var myStock = {
 		name: stockData.Elements[0].Symbol,
+		maxOpenPrice: stockData.Elements[0].DataSeries.open.max,
+		minOpenPrice: stockData.Elements[0].DataSeries.open.min,
 		maxClosePrice: stockData.Elements[0].DataSeries.close.max,
-		minClosePrice: stockData.Elements[0].DataSeries.close.min
-
+		minClosePrice: stockData.Elements[0].DataSeries.close.min,
+		peakPrice: stockData.Elements[0].DataSeries.high.max,
+		lowPrice: stockData.Elements[0].DataSeries.low.min
 	};
-
-	$('#stock-info').append('<h2>Symbol: ' + myStock.name + '</h2>');
 	
-	$('#stock-info').append('<div id=max-price></div>');
-	$('#max-price').append('<h4>Max Close Price : $' + myStock.maxClosePrice + '</h4>');
+	
+	$('#symbol').text(myStock.name);
+	
+	$('#max-open').text('Max: $' + myStock.maxOpenPrice);
+	$('#min-open').text('Min: $' + myStock.minOpenPrice);
+	
+	$('#max-close').text('Max: $' + myStock.maxClosePrice);
+	$('#min-close').text('Min: $' + myStock.minClosePrice);
 
-	$('#stock-info').append('<div id=min-price></div>');
-	$('#max-price').append('<h4>Min Close Price : $' + myStock.minClosePrice + '</h4>');
+	$('#peak').text('Peak: $' + myStock.peakPrice);
+	$('#low').text('low: $' + myStock.lowPrice);
 }
 
 
-function getParams(symbol) {
+function getParams(symbol, numDays) {
 	return {  
         Normalized: false,
-        NumberOfDays: days,
+        NumberOfDays: numDays,
         DataPeriod: "Day",
         Elements: [
             {
@@ -62,36 +70,20 @@ function getParams(symbol) {
     }
 }
 
-
-var days = 30; //number of days default set to 30
-
-//code for selecting date range first arg sets default values
-//second arg is a callback for when user selects date range
-$('input[name="daterange"]')
-	.daterangepicker({startDate: moment().subtract(30, 'days'), 
-						endDate: moment()}, 
-						
-						function(start, end, label) {
-							
-							days = Math.round((end - start) / (1000*60*60*24));
-							console.log(days);
-							
-										
-						});
-
-
 $('#submit-btn').click(function() {
 	var stockSymbol = $('#stock-name').val();
-
-	var request = getParams(stockSymbol);
+	  
+	var days = parseInt($('#day-input').val());
+	
+	var request = getParams(stockSymbol, days);
+	
 	getStockInfo(request);
-
 });
 
-//TODO: style html
-//		convert date picker to slider
+//TODO: style html, 
+// 		create table for info
 // 		error handling
-//		spacing on stock info
+		
 
 
 

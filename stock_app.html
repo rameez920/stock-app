@@ -3,7 +3,6 @@
 	<head>
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2.1.24/daterangepicker.css">
 		<title>Stock Analyzer</title>
 	</head>
 	<body>
@@ -21,8 +20,8 @@
 					<div class="row" id="symbol-entry">
 						<input type="text"  id="stock-name">
 					</div>
-					<div class="row" id="datepicker">
-						<input type="text" name="daterange"/>
+					<div class="row" id="day-range">
+						<input type="text" id="day-input" value=30>
 					</div>
 					<div class="row" id="button-row">	
 						<button class="btn btn-primary btn-lg" id="submit-btn">Submit</button>
@@ -30,7 +29,21 @@
 				</div>
 				
 				<div class="col-md-8" id="stock-info">
-					
+					<h2 id="symbol"></h2>
+					<div id="open-info">
+						<h3>Open Price</h3>
+						<h4 id="max-open"></h4>
+						<h4 id="min-open"></h4>
+					</div>
+					<div id="close-info">
+						<h3>Close Price</h3>
+						<h4 id="max-close"></h4>
+						<h4 id="min-close"></h4>
+					</div>
+					<div id="peak-low">
+						<h4 id="peak"></h4>
+						<h4 id="low"></h4>
+					</div>
 				</div>
 			</div>
 			<hr>
@@ -43,8 +56,8 @@
 	</body>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/2.15.1/moment.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/g/momentjs@2.15.1,bootstrap.daterangepicker@2.1.24"></script>
+	<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js" 
+	integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="app.js"></script>
 	<script type="text/javascript" src="graphRender.js"></script>
 </html>
