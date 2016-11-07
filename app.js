@@ -40,11 +40,11 @@ function renderInfo(stockData) {
 	
 	$('#symbol').text(myStock.name);
 	
-	$('#max-open').text('Max: $' + myStock.maxOpenPrice);
-	$('#min-open').text('Min: $' + myStock.minOpenPrice);
+	$('#max-open').text(myStock.maxOpenPrice);
+	$('#min-open').text(myStock.minOpenPrice);
 	
-	$('#max-close').text('Max: $' + myStock.maxClosePrice);
-	$('#min-close').text('Min: $' + myStock.minClosePrice);
+	$('#max-close').text(myStock.maxClosePrice);
+	$('#min-close').text(myStock.minClosePrice);
 
 	$('#peak').text('Peak: $' + myStock.peakPrice);
 	$('#low').text('low: $' + myStock.lowPrice);

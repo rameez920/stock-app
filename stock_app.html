@@ -16,11 +16,12 @@
 
 			<div class="row">
 				<div class="col-md-4" id="search">
-					<label>Stock</label>
 					<div class="row" id="symbol-entry">
+						<label>Stock Symbol</label>
 						<input type="text"  id="stock-name">
 					</div>
 					<div class="row" id="day-range">
+						<label># of days</label>
 						<input type="text" id="day-input" value=30>
 					</div>
 					<div class="row" id="button-row">	
@@ -30,20 +31,31 @@
 				
 				<div class="col-md-8" id="stock-info">
 					<h2 id="symbol"></h2>
-					<div id="open-info">
-						<h3>Open Price</h3>
-						<h4 id="max-open"></h4>
-						<h4 id="min-open"></h4>
-					</div>
-					<div id="close-info">
-						<h3>Close Price</h3>
-						<h4 id="max-close"></h4>
-						<h4 id="min-close"></h4>
-					</div>
 					<div id="peak-low">
 						<h4 id="peak"></h4>
 						<h4 id="low"></h4>
 					</div>
+					<table class="table">	
+						<thead class="table">
+							<tr>
+							 <th></th>
+							 <th>Maximum</th>
+							 <th>Low</th>
+							</tr>
+						</thead>	
+						<tbody>
+							<tr>	
+							 <th>Open Price</th>
+							 <th id="max-open"></th>
+							 <th id="min-open"></th>
+							</tr>
+							<tr>
+							 <th>Close Price</th>
+							 <th id="max-close"></th>
+							 <th id="min-close"></th>
+							</tr>
+						</tbody>
+					</table>	
 				</div>
 			</div>
 			<hr>

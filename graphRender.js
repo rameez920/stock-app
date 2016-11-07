@@ -1,6 +1,3 @@
-//TODO: fix date column to not show entire date
-
-
 function renderGraph(stockData) {
 	
 	google.charts.load('current', {packages: ['corechart', 'line']});
