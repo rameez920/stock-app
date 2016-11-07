@@ -75,13 +75,15 @@ $('#submit-btn').click(function() {
 	  
 	var days = parseInt($('#day-input').val());
 	
-	var request = getParams(stockSymbol, days);
-	
-	getStockInfo(request);
+	if (isNaN(days)) {
+		alert("please enter a valid number of days");
+	} else {
+		var request = getParams(stockSymbol, days);
+		getStockInfo(request);
+	}
 });
 
 //TODO: style html, 
-// 		create table for info
 // 		error handling
 		
 
